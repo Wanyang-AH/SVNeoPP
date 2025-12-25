@@ -1,0 +1,16 @@
+# Reference assets placeholders (replace with actual paths)
+resource_paths:
+  genome_fa: resources/genome.fa
+  genome_dict: resources/genome.dict
+  genome_fai: resources/genome.fa.fai
+  bwa_index: resources/bwa_index
+  star_index: resources/star_index
+  known_sites: resources/known_sites.vcf.gz
+  gtf: resources/genes.gtf
+  kallisto_index: resources/kallisto_index
+  optitype_data: resources/optitype
+  netmhcpan_data: resources/netmhcpan
+  mhcflurry_data: resources/mhcflurry
+  annotsv_data: resources/annotsv
+  fragpipe_db: resources/fragpipe/db.fasta
+  fragpipe_decoys: resources/fragpipe/decoys.fasta

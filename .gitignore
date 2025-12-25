@@ -1,0 +1,23 @@
+results/**
+resources/**
+logs/**
+tmp/**
+data/**
+containers/**
+.snakemake
+.snakemake/**
+.test/results/*
+workflow/notebooks/.ipynb_checkpoints/**
+**/.Rhistory
+**/*.Rproj
+**/.Rproj.user/**
+**/.RData
+**/Rplots.pdf
+
+# Optional large-output directories
+workdir/**
+reports/**
+figures/**
+plots/**
+cache/**
+.cache/**

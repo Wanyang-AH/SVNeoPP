@@ -1,0 +1,7 @@
+name: netchop-env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - netchop=3.1

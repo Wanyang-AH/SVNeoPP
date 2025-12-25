@@ -1,0 +1,14 @@
+# Local execution profile
+cores: 24
+jobs: 24
+restart-times: 0
+printshellcmds: true
+keep-going: false
+rerun-incomplete: true
+use-conda: true
+use-singularity: false
+singularity-args: "--bind $(pwd)/resources,$(pwd)/data,$(pwd)/tmp"
+default-resources:
+  - tmpdir="tmp"
+  - mem_mb=4000
+  - disk_mb=10000

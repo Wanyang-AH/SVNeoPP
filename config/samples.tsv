@@ -1,0 +1,21 @@
+sample_id	pair_id	status	datatype	r1	r2	platform
+l041_tumor	l041	tumor	WGS	data/wgs/l041_tumor_R1.fastq.gz	data/wgs/l041_tumor_R2.fastq.gz	illumina
+l041_normal	l041	normal	WGS	data/wgs/l041_normal_R1.fastq.gz	data/wgs/l041_normal_R2.fastq.gz	illumina
+l041_tumor_rna	l041	tumor	RNA	data/rna/l041_tumor_R1.fastq.gz	data/rna/l041_tumor_R2.fastq.gz	illumina
+l041_normal_rna	l041	normal	RNA	data/rna/l041_normal_R1.fastq.gz	data/rna/l041_normal_R2.fastq.gz	illumina
+l041_prot	l041	tumor	PROT	data/proteomics/l041.raw		ms
+l048_tumor	l048	tumor	WGS	data/wgs/l048_tumor_R1.fastq.gz	data/wgs/l048_tumor_R2.fastq.gz	illumina
+l048_normal	l048	normal	WGS	data/wgs/l048_normal_R1.fastq.gz	data/wgs/l048_normal_R2.fastq.gz	illumina
+l048_tumor_rna	l048	tumor	RNA	data/rna/l048_tumor_R1.fastq.gz	data/rna/l048_tumor_R2.fastq.gz	illumina
+l048_normal_rna	l048	normal	RNA	data/rna/l048_normal_R1.fastq.gz	data/rna/l048_normal_R2.fastq.gz	illumina
+l048_prot	l048	tumor	PROT	data/proteomics/l048.raw		ms
+l052_tumor	l052	tumor	WGS	data/wgs/l052_tumor_R1.fastq.gz	data/wgs/l052_tumor_R2.fastq.gz	illumina
+l052_normal	l052	normal	WGS	data/wgs/l052_normal_R1.fastq.gz	data/wgs/l052_normal_R2.fastq.gz	illumina
+l052_tumor_rna	l052	tumor	RNA	data/rna/l052_tumor_R1.fastq.gz	data/rna/l052_tumor_R2.fastq.gz	illumina
+l052_normal_rna	l052	normal	RNA	data/rna/l052_normal_R1.fastq.gz	data/rna/l052_normal_R2.fastq.gz	illumina
+l052_prot	l052	tumor	PROT	data/proteomics/l052.raw		ms
+l056_tumor	l056	tumor	WGS	data/wgs/l056_tumor_R1.fastq.gz	data/wgs/l056_tumor_R2.fastq.gz	illumina
+l056_normal	l056	normal	WGS	data/wgs/l056_normal_R1.fastq.gz	data/wgs/l056_normal_R2.fastq.gz	illumina
+l056_tumor_rna	l056	tumor	RNA	data/rna/l056_tumor_R1.fastq.gz	data/rna/l056_tumor_R2.fastq.gz	illumina
+l056_normal_rna	l056	normal	RNA	data/rna/l056_normal_R1.fastq.gz	data/rna/l056_normal_R2.fastq.gz	illumina
+l056_prot	l056	tumor	PROT	data/proteomics/l056.raw		ms

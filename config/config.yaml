@@ -1,0 +1,92 @@
+project: sv-neoantigen
+threads: 24
+tmpdir: tmp
+use_conda: true
+use_singularity: false
+use_docker: false
+
+samples: config/samples.tsv
+
+references:
+  genome_fa: resources/genome.fa
+  genome_dict: resources/genome.dict
+  genome_fai: resources/genome.fa.fai
+  bwa_index: resources/bwa_index
+  star_index: resources/star_index
+  known_sites: resources/known_sites.vcf.gz
+  gtf: resources/genes.gtf
+  kallisto_index: resources/kallisto_index
+  optitype_data: resources/optitype
+  netmhcpan_data: resources/netmhcpan
+  mhcflurry_data: resources/mhcflurry
+  annotsv_data: resources/annotsv
+  fragpipe_db: resources/fragpipe/db.fasta
+  fragpipe_decoys: resources/fragpipe/decoys.fasta
+
+pairing:
+  l041:
+    tumor: l041_tumor
+    normal: l041_normal
+  l048:
+    tumor: l048_tumor
+    normal: l048_normal
+  l052:
+    tumor: l052_tumor
+    normal: l052_normal
+  l056:
+    tumor: l056_tumor
+    normal: l056_normal
+
+params:
+  fastp:
+    extra: ""
+  bwa:
+    threads: 12
+    extra: ""
+  samtools:
+    sort_memory: "4G"
+  gatk:
+    bqsr_known_sites: resources/known_sites.vcf.gz
+    extra: ""
+  star:
+    threads: 12
+    extra: ""
+  kallisto:
+    strandedness: auto
+    bootstrap: 0
+    extra: ""
+  hla:
+    optitype_extra: ""
+  svaba:
+    extra: ""  # user to fill actual command args
+  annotsv:
+    genome_build: GRCh38
+    extra: ""
+  neoantigen:
+    flank_bp: 30
+    peptide_lengths: [8, 9, 10, 11]
+    min_tpm: 1.0
+    min_vaf: 0.05
+  netchop:
+    threshold: 0.5
+    extra: ""
+  netmhc:
+    peptide_lengths: [8, 9, 10, 11]
+    rank_threshold: 2.0
+    extra: ""
+  mhcflurry:
+    rank_threshold: 2.0
+    extra: ""
+  deepimmuno:
+    threshold: 0.0
+    extra: ""
+  fragpipe:
+    enzyme: unspecific
+    fdr: 0.01
+    extra: ""
+  report:
+    include_psms: true
+
+final_outputs:
+  - results/report/neoantigen_summary.tsv
+  - results/report/neoantigen_report.xlsx

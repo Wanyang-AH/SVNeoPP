@@ -1,0 +1,14 @@
+# Singularity/Docker profile
+cores: 24
+jobs: 24
+use-conda: false
+use-singularity: true
+printshellcmds: true
+rerun-incomplete: true
+restart-times: 0
+keep-going: false
+singularity-args: "--bind $(pwd)/resources,$(pwd)/data,$(pwd)/tmp"
+default-resources:
+  - tmpdir="tmp"
+  - mem_mb=4000
+  - disk_mb=10000

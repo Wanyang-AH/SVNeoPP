@@ -1,0 +1,8 @@
+name: fragpipe-env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - fragpipe=23.1
+  - openjdk=17

@@ -1,0 +1,7 @@
+name: netmhcpan-env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - netmhc-pan=4.1

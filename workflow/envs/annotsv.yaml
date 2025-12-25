@@ -1,0 +1,7 @@
+name: annotsv-env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - annotsv=3.3.7
