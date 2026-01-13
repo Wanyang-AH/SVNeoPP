@@ -1,5 +1,5 @@
 project: sv-neoantigen
-threads: 24
+threads: 20
 tmpdir: tmp
 use_conda: true
 use_singularity: false
