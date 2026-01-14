@@ -1,9 +1,6 @@
 project: sv-neoantigen
 threads: 20
 tmpdir: tmp
-use_conda: true
-use_singularity: false
-use_docker: false
 
 samples: config/samples.tsv
 
