@@ -35,8 +35,6 @@ pairing:
     normal: l056_normal
 
 params:
-  fastp:
-    extra: ""
   bwa:
     threads: 12
     extra: ""

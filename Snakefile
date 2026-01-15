@@ -1,11 +1,14 @@
 configfile: "config/config.yaml"
 
+samples = workflow.source_path("config/samples.tsv")
+
 TMPDIR = config.get("tmpdir", "tmp")
 FINAL_OUTPUTS = config.get("final_outputs", [])
 
 rule all:
     input: FINAL_OUTPUTS
 
+include: "workflow/rules/common.smk"
 include: "workflow/rules/qc.smk"
 include: "workflow/rules/wgs_align.smk"
 include: "workflow/rules/rna_align_quant.smk"
