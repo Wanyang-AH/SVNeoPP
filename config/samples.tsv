@@ -1,8 +1,8 @@
 pair_id	sample_id	replicate	status	datatype	r1	r2	platform
-l041	l041_tumor_wgs_1	1	tumor	wgs	data/wgs/l041_tumor_R1.fastq.gz	data/wgs/l041_tumor_R2.fastq.gz	illumina
-l041	l041_normal_wgs_1	1	normal	wgs	data/wgs/l041_normal_R1.fastq.gz	data/wgs/l041_normal_R2.fastq.gz	illumina
-l041	l041_tumor_rna_1	1	tumor	rna	data/rna/l041_tumor_R1.fastq.gz	data/rna/l041_tumor_R2.fastq.gz	illumina
-l041	l041_normal_rna_1	1	normal	rna	data/rna/l041_normal_R1.fastq.gz	data/rna/l041_normal_R2.fastq.gz	illumina
+l041	l041_tumor_wgs_1	1	tumor	wgs	data/wgs/l041/l041_dna_tumor_R1.fastq.gz	data/wgs/l041/l041_dna_tumor_R2.fastq.gz	illumina
+l041	l041_normal_wgs_1	1	normal	wgs	data/wgs/l041/l041_dna_normal_R1.fastq.gz	data/wgs/l041/l041_dna_normal_R2.fastq.gz	illumina
+l041	l041_tumor_rna_1	1	tumor	rna	data/rna/l041/l041_rna_tumor_R1.fastq.gz	data/rna/l041/l041_rna_tumor_R2.fastq.gz	illumina
+l041	l041_normal_rna_1	1	normal	rna	data/rna/l041/l041_rna_normal_R1.fastq.gz	data/rna/l041/l041_rna_normal_R2.fastq.gz	illumina
 l041	l041_prot_t1	1	tumor	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041_T_F1.raw		ms
 l041	l041_prot_t2	2	tumor	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041_T_F2.raw		ms
 l041	l041_prot_t3	3	tumor	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041_T_F3.raw		ms
@@ -15,10 +15,10 @@ l041	l041_prot_n3	3	normal	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041
 l041	l041_prot_n4	4	normal	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041_N_F4.raw		ms
 l041	l041_prot_n5	5	normal	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041_N_F5.raw		ms
 l041	l041_prot_n6	6	normal	prot	data/proteomics/l041/CNHPP_HCC_LC_profiling_L041_N_F6.raw		ms
-l048	l048_tumor_wgs_1	1	tumor	wgs	data/wgs/l048_tumor_R1.fastq.gz	data/wgs/l048_tumor_R2.fastq.gz	illumina
-l048	l048_normal_wgs_1	1	normal	wgs	data/wgs/l048_normal_R1.fastq.gz	data/wgs/l048_normal_R2.fastq.gz	illumina
-l048	l048_tumor_rna_1	1	tumor	rna	data/rna/l048_tumor_R1.fastq.gz	data/rna/l048_tumor_R2.fastq.gz	illumina
-l048	l048_normal_rna_1	1	normal	rna	data/rna/l048_normal_R1.fastq.gz	data/rna/l048_normal_R2.fastq.gz	illumina
+l048	l048_tumor_wgs_1	1	tumor	wgs	data/wgs/l048/l048_dna_tumor_R1.fastq.gz	data/wgs/l048/l048_dna_tumor_R2.fastq.gz	illumina
+l048	l048_normal_wgs_1	1	normal	wgs	data/wgs/l048/l048_dna_normal_R1.fastq.gz	data/wgs/l048/l048_dna_normal_R2.fastq.gz	illumina
+l048	l048_tumor_rna_1	1	tumor	rna	data/rna/l048/l048_rna_tumor_R1.fastq.gz	data/rna/l048/l048_rna_tumor_R2.fastq.gz	illumina
+l048	l048_normal_rna_1	1	normal	rna	data/rna/l048/l048_rna_normal_R1.fastq.gz	data/rna/l048/l048_rna_normal_R2.fastq.gz	illumina
 l048	l048_prot_t1	1	tumor	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048T_5per_F1_R1.raw		ms
 l048	l048_prot_t2	2	tumor	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048T_5per_F2_R1.raw		ms
 l048	l048_prot_t3	3	tumor	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048T_5per_F3_R1.raw		ms
@@ -31,10 +31,10 @@ l048	l048_prot_n3	3	normal	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048
 l048	l048_prot_n4	4	normal	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048P_5per_F4_R1.raw		ms
 l048	l048_prot_n5	5	normal	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048P_5per_F5_R1.raw		ms
 l048	l048_prot_n6	6	normal	prot	data/proteomics/l048/CNHPP_HCC_LC_profiling_L048P_5per_F6_R1.raw		ms
-l052	l052_tumor_wgs_1	1	tumor	wgs	data/wgs/l052_tumor_R1.fastq.gz	data/wgs/l052_tumor_R2.fastq.gz	illumina
-l052	l052_normal_wgs_1	1	normal	wgs	data/wgs/l052_normal_R1.fastq.gz	data/wgs/l052_normal_R2.fastq.gz	illumina
-l052	l052_tumor_rna_1	1	tumor	rna	data/rna/l052_tumor_R1.fastq.gz	data/rna/l052_tumor_R2.fastq.gz	illumina
-l052	l052_normal_rna_1	1	normal	rna	data/rna/l052_normal_R1.fastq.gz	data/rna/l052_normal_R2.fastq.gz	illumina
+l052	l052_tumor_wgs_1	1	tumor	wgs	data/wgs/l052/l052_dna_tumor_R1.fastq.gz	data/wgs/l052/l052_dna_tumor_R2.fastq.gz	illumina
+l052	l052_normal_wgs_1	1	normal	wgs	data/wgs/l052/l052_dna_normal_R1.fastq.gz	data/wgs/l052/l052_dna_normal_R2.fastq.gz	illumina
+l052	l052_tumor_rna_1	1	tumor	rna	data/rna/l052/l052_rna_tumor_R1.fastq.gz	data/rna/l052/l052_rna_tumor_R2.fastq.gz	illumina
+l052	l052_normal_rna_1	1	normal	rna	data/rna/l052/l052_rna_normal_R1.fastq.gz	data/rna/l052/l052_rna_normal_R2.fastq.gz	illumina
 l052	l052_prot_t1	1	tumor	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052T_5per_F1_R1.raw		ms
 l052	l052_prot_t2	2	tumor	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052T_5per_F2_R1.raw		ms
 l052	l052_prot_t3	3	tumor	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052T_5per_F3_R1.raw		ms
@@ -47,10 +47,10 @@ l052	l052_prot_n3	3	normal	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052
 l052	l052_prot_n4	4	normal	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052P_5per_F4_R1.raw		ms
 l052	l052_prot_n5	5	normal	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052P_5per_F5_R1.raw		ms
 l052	l052_prot_n6	6	normal	prot	data/proteomics/l052/CNHPP_HCC_LC_profiling_L052P_5per_F6_R1.raw		ms
-l056	l056_tumor_wgs_1	1	tumor	wgs	data/wgs/l056_tumor_R1.fastq.gz	data/wgs/l056_tumor_R2.fastq.gz	illumina
-l056	l056_normal_wgs_1	1	normal	wgs	data/wgs/l056_normal_R1.fastq.gz	data/wgs/l056_normal_R2.fastq.gz	illumina
-l056	l056_tumor_rna_1	1	tumor	rna	data/rna/l056_tumor_R1.fastq.gz	data/rna/l056_tumor_R2.fastq.gz	illumina
-l056	l056_normal_rna_1	1	normal	rna	data/rna/l056_normal_R1.fastq.gz	data/rna/l056_normal_R2.fastq.gz	illumina
+l056	l056_tumor_wgs_1	1	tumor	wgs	data/wgs/l056/l056_dna_tumor_R1.fastq.gz	data/wgs/l056/l056_dna_tumor_R2.fastq.gz	illumina
+l056	l056_normal_wgs_1	1	normal	wgs	data/wgs/l056/l056_dna_normal_R1.fastq.gz	data/wgs/l056/l056_dna_normal_R2.fastq.gz	illumina
+l056	l056_tumor_rna_1	1	tumor	rna	data/rna/l056/l056_rna_tumor_R1.fastq.gz	data/rna/l056/l056_rna_tumor_R2.fastq.gz	illumina
+l056	l056_normal_rna_1	1	normal	rna	data/rna/l056/l056_rna_normal_R1.fastq.gz	data/rna/l056/l056_rna_normal_R2.fastq.gz	illumina
 l056	l056_prot_t1	1	tumor	prot	data/proteomics/l056/CNHPP_HCC_LC_profiling_L056T_5per_F1_R2.raw		ms
 l056	l056_prot_t2	2	tumor	prot	data/proteomics/l056/CNHPP_HCC_LC_profiling_L056T_5per_F2_R2.raw		ms
 l056	l056_prot_t3	3	tumor	prot	data/proteomics/l056/CNHPP_HCC_LC_profiling_L056T_5per_F3_R2.raw		ms

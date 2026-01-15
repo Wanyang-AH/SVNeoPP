@@ -18,6 +18,14 @@ def build_index(rows):
         idx[sid] = row
     return idx
 
+def zip_fields(index, ids):
+    return dict(
+        pair_id=[index[sid]["pair_id"] for sid in ids],
+        datatype=[index[sid]["datatype"] for sid in ids],
+        sample_id=ids,
+    )
+
+
 wgs_samples  = load_samples("wgs")
 rna_samples  = load_samples("rna")
 prot_samples = load_samples("prot")
