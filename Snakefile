@@ -10,7 +10,8 @@ rule all:
 
 include: "workflow/rules/common.smk"
 include: "workflow/rules/qc.smk"
-include: "workflow/rules/wgs_align.smk"
+include: "workflow/rules/bwa.smk"
+include: "workflow/rules/star.smk"
 include: "workflow/rules/rna_align_quant.smk"
 include: "workflow/rules/hla.smk"
 include: "workflow/rules/sv.smk"
