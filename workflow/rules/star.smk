@@ -20,7 +20,7 @@ rule star_pe_multi:
         ],
         idx=STAR_INDEX,
     output:
-        aln="results/star/{pair_id}/{sample_id}/aligned.sam",
+        aln="results/star/{pair_id}/{sample_id}/aligned.bam",
         log="results/star/{pair_id}/{sample_id}/Log.out",
         sj="results/star/{pair_id}/{sample_id}/SJ.out.tab",
         unmapped=[
@@ -39,7 +39,13 @@ rule star_pe_multi:
 rule star_all:
     input:
         expand(
-            "results/star/{pair_id}/{sample_id}/aligned.sam",
+            "results/star/{pair_id}/{sample_id}/aligned.bam",
+            zip,
+            pair_id=RNA_PAIR_IDS,
+            sample_id=RNA_STAR_IDS,
+        ),
+        expand(
+            "results/star/{pair_id}/{sample_id}/aligned.bam.bai",
             zip,
             pair_id=RNA_PAIR_IDS,
             sample_id=RNA_STAR_IDS,

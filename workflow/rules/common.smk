@@ -1,6 +1,9 @@
 import csv
 
 def load_samples(datatype):
+    """
+    返回包含{datatype}的字典列表，key为样本表中的列名。
+    """
     samples = []
     with open(config["samples"], newline="") as fh:
         reader = csv.DictReader(fh, delimiter="\t")
@@ -10,6 +13,9 @@ def load_samples(datatype):
     return samples
 
 def build_index(rows):
+    """
+    返回每一行sample_id 为 key 的字典索引
+    """
     idx = {}
     for row in rows:
         sid = row["sample_id"]
@@ -19,6 +25,15 @@ def build_index(rows):
     return idx
 
 def zip_fields(index, ids):
+    """
+    返回一个字典，包含给定样本ID列表对应的pair_id、datatype和sample_id字段。
+    以wgs为例：
+    {
+    "pair_id":   ["l041", "l041", ...],
+    "datatype":  ["wgs",  "wgs",  ...],
+    "sample_id": ["l041_tumor_wgs_1", "l041_normal_wgs_1", ...],
+    }
+    """
     return dict(
         pair_id=[index[sid]["pair_id"] for sid in ids],
         datatype=[index[sid]["datatype"] for sid in ids],
