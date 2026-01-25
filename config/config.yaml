@@ -7,10 +7,10 @@ samples: config/samples.tsv
 references:
   bwa_index: resources/bwa_index
   star_index: resources/star_index
-  known_sites: resources/known_sites.vcf.gz
-  gtf: resources/genes.gtf
   kallisto_index: resources/kallisto_index/gencode.v47.transcripts.fa.gz
-  optitype_data: resources/optitype
+  gatk_sites: resources/gatk/dbsnp_146.hg38.vcf.gz
+  gatk_fa: resources/bwa_index/hg38.fa
+  gatk_dict: resources/bwa_index/hg38.fa.dict
   netmhcpan_data: resources/netmhcpan
   mhcflurry_data: resources/mhcflurry
   annotsv_data: resources/annotsv
@@ -38,7 +38,7 @@ params:
   samtools:
     sort_memory: "4G"
   gatk:
-    bqsr_known_sites: resources/known_sites.vcf.gz
+    java_options: "-Xmx16G"
     extra: ""
   star:
     threads: 12

@@ -3,6 +3,8 @@
 # 源自common.smk文件
 fastp_index = {**wgs_index, **rna_index}
 FASTP_IDS = sorted(fastp_index.keys())
+FASTP_PAIR_IDS = [fastp_index[sid]["pair_id"] for sid in FASTP_IDS]
+FASTP_DTYPES = [fastp_index[sid]["datatype"] for sid in FASTP_IDS]
 
 rule fastp_pe:
     input:
@@ -37,10 +39,10 @@ rule fastp_pe:
 rule fastp_all:
     input:
         expand("results/fastp/{pair_id}/{datatype}/{sample_id}_R1.fastq.gz",
-               zip, **zip_fields(fastp_index, FASTP_IDS)),
+               zip, pair_id=FASTP_PAIR_IDS, datatype=FASTP_DTYPES, sample_id=FASTP_IDS),
         expand("results/fastp/{pair_id}/{datatype}/{sample_id}_R2.fastq.gz",
-               zip, **zip_fields(fastp_index, FASTP_IDS)),
+               zip, pair_id=FASTP_PAIR_IDS, datatype=FASTP_DTYPES, sample_id=FASTP_IDS),
         expand("results/fastp/{pair_id}/{datatype}/{sample_id}.fastp.html",
-               zip, **zip_fields(fastp_index, FASTP_IDS)),
+               zip, pair_id=FASTP_PAIR_IDS, datatype=FASTP_DTYPES, sample_id=FASTP_IDS),
         expand("results/fastp/{pair_id}/{datatype}/{sample_id}.fastp.json",
-               zip, **zip_fields(fastp_index, FASTP_IDS)),
+               zip, pair_id=FASTP_PAIR_IDS, datatype=FASTP_DTYPES, sample_id=FASTP_IDS),

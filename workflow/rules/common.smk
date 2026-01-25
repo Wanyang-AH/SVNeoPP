@@ -1,15 +1,22 @@
 import csv
 
-def load_samples(datatype):
+def load_samples(datatype, status=None):
     """
-    返回包含{datatype}的字典列表，key为样本表中的列名。
+    返回包含给定 datatype（以及可选 status）的字典列表。
     """
     samples = []
+    datatype = (datatype or "").strip().lower()
+    status = (status or "").strip().lower() or None
     with open(config["samples"], newline="") as fh:
         reader = csv.DictReader(fh, delimiter="\t")
         for row in reader:
-            if (row.get("datatype") or "").strip().lower() == datatype:
-                samples.append(row)
+            row_datatype = (row.get("datatype") or "").strip().lower()
+            row_status = (row.get("status") or "").strip().lower()
+            if row_datatype != datatype:
+                continue
+            if status and row_status != status:
+                continue
+            samples.append(row)
     return samples
 
 def build_index(rows):
@@ -24,22 +31,6 @@ def build_index(rows):
         idx[sid] = row
     return idx
 
-def zip_fields(index, ids):
-    """
-    返回一个字典，包含给定样本ID列表对应的pair_id、datatype和sample_id字段。
-    以wgs为例：
-    {
-    "pair_id":   ["l041", "l041", ...],
-    "datatype":  ["wgs",  "wgs",  ...],
-    "sample_id": ["l041_tumor_wgs_1", "l041_normal_wgs_1", ...],
-    }
-    """
-    return dict(
-        pair_id=[index[sid]["pair_id"] for sid in ids],
-        datatype=[index[sid]["datatype"] for sid in ids],
-        sample_id=ids,
-    )
-
 
 wgs_samples  = load_samples("wgs")
 rna_samples  = load_samples("rna")
@@ -52,3 +43,19 @@ prot_index = build_index(prot_samples)
 WGS_IDS  = sorted(wgs_index.keys())
 RNA_IDS  = sorted(rna_index.keys())
 PROT_IDS = sorted(prot_index.keys())
+
+# status-aware subsets（供需要 tumor/normal 过滤的规则使用）
+tumor_wgs_samples = load_samples("wgs", status="tumor")
+normal_wgs_samples = load_samples("wgs", status="normal")
+tumor_rna_samples = load_samples("rna", status="tumor")
+normal_rna_samples = load_samples("rna", status="normal")
+
+tumor_wgs_index = build_index(tumor_wgs_samples)
+normal_wgs_index = build_index(normal_wgs_samples)
+tumor_rna_index = build_index(tumor_rna_samples)
+normal_rna_index = build_index(normal_rna_samples)
+
+TUMOR_WGS_IDS = sorted(tumor_wgs_index.keys())
+NORMAL_WGS_IDS = sorted(normal_wgs_index.keys())
+TUMOR_RNA_IDS = sorted(tumor_rna_index.keys())
+NORMAL_RNA_IDS = sorted(normal_rna_index.keys())

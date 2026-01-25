@@ -13,9 +13,13 @@ include: "workflow/rules/bwa.smk"
 include: "workflow/rules/star.smk"
 include: "workflow/rules/samtools_index.smk"
 include: "workflow/rules/kallisto.smk"
+include: "workflow/rules/hla.smk"
+include: "workflow/rules/gatk.smk"
 
 
 rule all:
     input: rules.kallisto_all.input,
            rules.star_all.input,
            rules.bwa_all.input,
+           rules.hla_all.input,
+           rules.gatk_all.input,

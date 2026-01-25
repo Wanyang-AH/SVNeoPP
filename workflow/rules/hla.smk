@@ -1,45 +1,43 @@
-"""HLA typing with OptiType on RNA tumor samples."""
-import csv
+"""HLA typing with OptiType wrapper (tumor RNA only)."""
 
+# 只使用 tumor RNA
+optitype_index = tumor_rna_index
+OPTITYPE_IDS = TUMOR_RNA_IDS
+OPTITYPE_PAIR_IDS = [optitype_index[sid]["pair_id"] for sid in OPTITYPE_IDS]
 
-def load_hla_samples():
-    rows = []
-    with open(config["samples"], newline="") as fh:
-        reader = csv.DictReader(fh, delimiter="\t")
-        for row in reader:
-            if row.get("datatype") == "RNA" and row.get("status") == "tumor":
-                rows.append(row)
-    return rows
+OPTITYPE_EXTRA = config["params"]["hla"].get("optitype_extra", "")
 
-
-hla_samples = load_hla_samples()
-hla_ids = [row["sample_id"] for row in hla_samples]
-hla_index = {row["sample_id"]: row for row in hla_samples}
-OPTITYPE_EXTRA = config["params"]["hla"]["optitype_extra"]
 
 rule optitype:
     input:
-        r1="results/qc/{sample_id}_R1.fastq.gz",
-        r2="results/qc/{sample_id}_R2.fastq.gz",
+        reads=lambda wc: [
+            f"results/fastp/{optitype_index[wc.sample_id]['pair_id']}/rna/{wc.sample_id}_R1.fastq.gz",
+            f"results/fastp/{optitype_index[wc.sample_id]['pair_id']}/rna/{wc.sample_id}_R2.fastq.gz",
+        ]
     output:
-        result="results/hla/{sample_id}/OptiType_result.tsv",
-    threads: 8
-    resources:
-        mem_mb=8000,
-        tmpdir=TMPDIR,
-    conda: "../envs/optitype.yaml"
-    shell:
-        """
-        mkdir -p results/hla/{wildcards.sample_id}
-        OptiTypePipeline.py \
-            -i {input.r1} {input.r2} \
-            -o results/hla/{wildcards.sample_id} \
-            -p {wildcards.sample_id} \
-            -v \
-            {OPTITYPE_EXTRA}
-        cp results/hla/{wildcards.sample_id}/{wildcards.sample_id}_result.tsv {output.result}
-        """
+        pdf="results/hla/optitype/{pair_id}/{sample_id}_coverage_plot.pdf",
+        tsv="results/hla/optitype/{pair_id}/{sample_id}_result.tsv",
+    log:
+        "logs/optitype/{pair_id}/{sample_id}.log"
+    params:
+        sequencing_type="rna",
+        config="",
+        extra=OPTITYPE_EXTRA,
+    wrapper:
+        "v2.9.1/bio/optitype"
+
 
 rule hla_all:
     input:
-        expand("results/hla/{sample_id}/OptiType_result.tsv", sample_id=hla_ids),
+        expand(
+            "results/hla/optitype/{pair_id}/{sample_id}_result.tsv",
+            zip,
+            pair_id=OPTITYPE_PAIR_IDS,
+            sample_id=OPTITYPE_IDS,
+        ),
+        expand(
+            "results/hla/optitype/{pair_id}/{sample_id}_coverage_plot.pdf",
+            zip,
+            pair_id=OPTITYPE_PAIR_IDS,
+            sample_id=OPTITYPE_IDS,
+        )
