@@ -8,7 +8,7 @@ GATK_EXTRA = config["params"]["gatk"].get("extra", "")
 GATK_JAVA_OPTS = config["params"]["gatk"].get("java_opts", "")
 GATK_REF = config["references"]["gatk_fa"]
 GATK_DICT = config["references"]["gatk_dict"]
-GATK_SITES = config["references"]["gatk_sites"]
+GATK_SITES = [config["references"]["gatk_dbsnp"], config["references"]["gatk_mils"]]
 
 
 rule mark_duplicates_spark:

@@ -15,6 +15,7 @@ include: "workflow/rules/samtools_index.smk"
 include: "workflow/rules/kallisto.smk"
 include: "workflow/rules/hla.smk"
 include: "workflow/rules/gatk.smk"
+include: "workflow/rules/svaba.smk"
 
 
 rule all:
@@ -23,3 +24,4 @@ rule all:
            rules.bwa_all.input,
            rules.hla_all.input,
            rules.gatk_all.input,
+           rules.svaba_all.input,

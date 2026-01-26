@@ -1,7 +1,0 @@
-name: star-env
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
-dependencies:
-  - star=2.7.10b

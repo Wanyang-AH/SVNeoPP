@@ -8,7 +8,8 @@ references:
   bwa_index: resources/bwa_index
   star_index: resources/star_index
   kallisto_index: resources/kallisto_index/gencode.v47.transcripts.fa.gz
-  gatk_sites: resources/gatk/dbsnp_146.hg38.vcf.gz
+  gatk_dbsnp: resources/gatk/dbsnp_146.hg38.vcf.gz
+  gatk_mils: resources/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
   gatk_fa: resources/bwa_index/hg38.fa
   gatk_dict: resources/bwa_index/hg38.fa.dict
   netmhcpan_data: resources/netmhcpan
@@ -50,6 +51,7 @@ params:
   hla:
     optitype_extra: ""
   svaba:
+    threads: 12
     extra: ""  # user to fill actual command args
   annotsv:
     genome_build: GRCh38

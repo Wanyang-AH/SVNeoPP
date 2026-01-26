@@ -1,9 +1,0 @@
-name: optitype-env
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
-dependencies:
-  - optitype=1.3.5
-  - samtools=1.17
-  - python=3.10
