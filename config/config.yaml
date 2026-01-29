@@ -12,9 +12,9 @@ references:
   gatk_mils: resources/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
   gatk_fa: resources/bwa_index/hg38.fa
   gatk_dict: resources/bwa_index/hg38.fa.dict
+  annotsv_data: resources/annotsv
   netmhcpan_data: resources/netmhcpan
   mhcflurry_data: resources/mhcflurry
-  annotsv_data: resources/annotsv
   fragpipe_db: resources/fragpipe/db.fasta
   fragpipe_decoys: resources/fragpipe/decoys.fasta
 

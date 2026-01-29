@@ -29,7 +29,7 @@ rule svaba_run:
         ref=SVABA_REF,
         dbsnp=SVABA_DBSNP,
     output:
-        sv_vcf="results/svaba/{pair_id}/{pair_id}.svaba.somatic.sv.vcf",
+        sv_vcf="results/svaba/{pair_id}/{pair_id}.svaba.somatic.sv.vcf.gz",
     log:
         "logs/svaba/{pair_id}.log",
     params:
@@ -53,6 +53,7 @@ rule svaba_run:
           -G {params.ref} \
           -a {wildcards.pair_id} \
           -p {threads} \
+          -z \
           -D {params.dbsnp} \
           > {log} 2>&1
         """
@@ -61,6 +62,6 @@ rule svaba_run:
 rule svaba_all:
     input:
         expand(
-            "results/svaba/{pair_id}/{pair_id}.svaba.somatic.sv.vcf",
+            "results/svaba/{pair_id}/{pair_id}.svaba.somatic.sv.vcf.gz",
             pair_id=SVABA_PAIR_IDS,
         )

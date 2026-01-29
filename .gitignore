@@ -20,5 +20,4 @@ workdir/**
 reports/**
 figures/**
 plots/**
-cache/**
-.cache/**
+
