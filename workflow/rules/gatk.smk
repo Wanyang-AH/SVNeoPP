@@ -15,7 +15,7 @@ rule mark_duplicates_spark:
     input:
         bam="results/bwa/{pair_id}/{sample_id}.bam",
     output:
-        bam="results/gatk/dedup/{pair_id}/{sample_id}.bam",
+        bam=temp("results/gatk/dedup/{pair_id}/{sample_id}.bam"),
         metrics="results/gatk/dedup/{pair_id}/{sample_id}.metrics.txt",
     log:
         "logs/gatk/markduplicates/{pair_id}/{sample_id}.log",
@@ -38,7 +38,7 @@ rule gatk_baserecalibrator:
         dict=GATK_DICT,
         known=GATK_SITES,
     output:
-        recal_table="results/gatk/bqsr/{pair_id}/{sample_id}.grp",
+        recal_table=temp("results/gatk/bqsr/{pair_id}/{sample_id}.grp"),
     log:
         "logs/gatk/baserecalibrator/{pair_id}/{sample_id}.log",
     params:

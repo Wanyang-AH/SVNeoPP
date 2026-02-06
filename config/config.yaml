@@ -13,6 +13,9 @@ references:
   gatk_fa: resources/bwa_index/hg38.fa
   gatk_dict: resources/bwa_index/hg38.fa.dict
   annotsv_data: resources/annotsv
+  annotsv2pep_gtf: resources/annotsvtopep/gencode.v47.annotation.gtf
+  annotsv2pep_id_map: resources/annotsvtopep/Seq_Ens.txt
+  annotsv2pep_db: resources/annotsvtopep/gene_annotation.db
   netmhcpan_data: resources/netmhcpan
   mhcflurry_data: resources/mhcflurry
   fragpipe_db: resources/fragpipe/db.fasta

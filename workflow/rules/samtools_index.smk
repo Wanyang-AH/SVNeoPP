@@ -35,7 +35,7 @@ rule samtools_index_gatk_dedup:
     input:
         "results/gatk/dedup/{pair_id}/{sample_id}.bam",
     output:
-        "results/gatk/dedup/{pair_id}/{sample_id}.bam.bai",
+        temp("results/gatk/dedup/{pair_id}/{sample_id}.bam.bai"),
     log:
         "logs/samtools_index/gatk/{pair_id}/{sample_id}.log",
     params:

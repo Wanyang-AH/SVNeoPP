@@ -17,6 +17,7 @@ include: "workflow/rules/hla.smk"
 include: "workflow/rules/gatk.smk"
 include: "workflow/rules/svaba.smk"
 include: "workflow/rules/annotsv.smk"
+include: "workflow/rules/annotsv2pep.smk"
 
 
 rule all:
@@ -27,3 +28,4 @@ rule all:
            rules.gatk_all.input,
            rules.svaba_all.input,
            rules.annotsv_all.input,
+           rules.annotsv2pep_all.input,
