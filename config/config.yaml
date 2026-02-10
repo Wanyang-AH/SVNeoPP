@@ -16,10 +16,11 @@ references:
   annotsv2pep_gtf: resources/annotsvtopep/gencode.v47.annotation.gtf
   annotsv2pep_id_map: resources/annotsvtopep/Seq_Ens.txt
   annotsv2pep_db: resources/annotsvtopep/gene_annotation.db
-  netmhcpan_data: resources/netmhcpan
-  mhcflurry_data: resources/mhcflurry
-  fragpipe_db: resources/fragpipe/db.fasta
-  fragpipe_decoys: resources/fragpipe/decoys.fasta
+  netchop_home: resources/netchop_3_1
+  netchop_bin: resources/netchop_3_1/bin/netChop
+  netmhcpan_home: resources/netMHCpan-4.1/Linux_x86_64
+  netmhcpan_bin: resources/netMHCpan-4.1/Linux_x86_64/bin/netMHCpan
+
 
 pairing:
   l041:
@@ -66,10 +67,16 @@ params:
     min_vaf: 0.05
   netchop:
     threshold: 0.5
+    n_term_min: 0.5
+    c_term_min: 0.5
+    internal_max: 0.5
+    internal_count_max: 0
     extra: ""
   netmhc:
     peptide_lengths: [8, 9, 10, 11]
-    rank_threshold: 2.0
+    rank_el_threshold: 2.0
+    rank_ba_threshold: 2.0
+    tmp_template: /tmp/netMHCpanXXXXXX
     extra: ""
   mhcflurry:
     rank_threshold: 2.0
