@@ -289,7 +289,7 @@ Planned modules (not yet integrated):
 
 ## License
 
-Add your project license here (e.g., MIT / Apache-2.0 / GPL-3.0).
+This project is licensed under the terms in the repository root `LICENSE` file.
 Also note that some third-party tools/resources (e.g., netMHCpan) are license-restricted and must not be redistributed.
 
 ---
@@ -299,6 +299,5 @@ Also note that some third-party tools/resources (e.g., netMHCpan) are license-re
 * Before committing, review `.gitignore` and update ignore rules according to your project data/output policy.
 
 ---
-
 
 
