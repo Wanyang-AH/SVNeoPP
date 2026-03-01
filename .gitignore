@@ -2,6 +2,7 @@ resources/**
 logs/**
 tmp/**
 data/**
+results/**/*.raw.txt
 containers/**
 .snakemake
 .snakemake/**
@@ -12,6 +13,7 @@ AGENTS.md
 **/.Rproj.user/**
 **/.RData
 **/Rplots.pdf
+
 
 # Optional large-output directories
 workdir/**
