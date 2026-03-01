@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Parse NetChop raw output and compute peptide-level cleavage metrics."""
 
-from __future__ import annotations
-
 import argparse
 import csv
 import re

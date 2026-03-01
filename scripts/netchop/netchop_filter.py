@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Filter NetChop metrics to retain peptide candidates."""
 
-from __future__ import annotations
-
 import argparse
 import csv
 from pathlib import Path

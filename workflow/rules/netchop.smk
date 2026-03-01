@@ -25,7 +25,7 @@ rule netchop_prepare_input:
         mem_mb=1000,
         tmpdir=TMPDIR,
     script:
-        "scripts/netchop/netchop_prepare_input.py"
+        "../../scripts/netchop/netchop_prepare_input.py"
 
 
 rule netchop_prepare_all:
@@ -58,6 +58,7 @@ rule netchop_run:
         tmpdir=TMPDIR,
     shell:
         r"""
+        : > "{log}"
         if [ ! -x "{params.netchop_bin}" ]; then
           echo "ERROR: netChop binary not executable: {params.netchop_bin}" > {log}
           exit 1
@@ -66,7 +67,12 @@ rule netchop_run:
           echo "ERROR: netChop home not found: {params.netchop_home}" > {log}
           exit 1
         fi
+        NETCHOP="{params.netchop_home}" \
         "{params.netchop_bin}" -d "{params.netchop_home}" {params.extra} "{input.fasta}" > "{output.raw}" 2>> "{log}"
+        if grep -q "Unable to read SYN file" "{log}"; then
+          echo "ERROR: netChop could not load model files under NETCHOP={params.netchop_home}" >> "{log}"
+          exit 1
+        fi
         """
 
 
@@ -96,7 +102,7 @@ rule netchop_parse:
         mem_mb=1000,
         tmpdir=TMPDIR,
     script:
-        "scripts/netchop/netchop_parse.py"
+        "../../scripts/netchop/netchop_parse.py"
 
 
 rule netchop_filter:
@@ -116,7 +122,7 @@ rule netchop_filter:
         mem_mb=1000,
         tmpdir=TMPDIR,
     script:
-        "scripts/netchop/netchop_filter.py"
+        "../../scripts/netchop/netchop_filter.py"
 
 
 rule netchop_filter_all:

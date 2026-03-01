@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Prepare NetChop FASTA input from annotsv2pep peptide CSV."""
 
-from __future__ import annotations
-
 import argparse
 import csv
 import re

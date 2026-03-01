@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Prepare netMHCpan inputs from NetChop-filtered peptides and OptiType alleles."""
 
-from __future__ import annotations
-
 import argparse
 import csv
 import re

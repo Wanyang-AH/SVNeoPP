@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Parse netMHCpan xls-style output into a normalized long-format CSV."""
 
-from __future__ import annotations
-
 import argparse
 import csv
 from pathlib import Path

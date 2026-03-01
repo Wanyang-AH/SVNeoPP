@@ -48,7 +48,7 @@ rule netmhcpan_prepare_input:
         mem_mb=1000,
         tmpdir=TMPDIR,
     script:
-        "scripts/netmhcpan/netmhcpan_prepare_input.py"
+        "../../scripts/netmhcpan/netmhcpan_prepare_input.py"
 
 
 rule netmhcpan_run:
@@ -113,7 +113,7 @@ rule netmhcpan_parse:
         mem_mb=1000,
         tmpdir=TMPDIR,
     script:
-        "scripts/netmhcpan/netmhcpan_parse.py"
+        "../../scripts/netmhcpan/netmhcpan_parse.py"
 
 
 rule netmhcpan_filter:
@@ -131,7 +131,7 @@ rule netmhcpan_filter:
         mem_mb=1000,
         tmpdir=TMPDIR,
     script:
-        "scripts/netmhcpan/netmhcpan_filter.py"
+        "../../scripts/netmhcpan/netmhcpan_filter.py"
 
 
 rule netmhcpan_all:

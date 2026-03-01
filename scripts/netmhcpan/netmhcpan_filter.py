@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Filter netMHCpan predictions by EL and BA rank thresholds."""
 
-from __future__ import annotations
-
 import argparse
 import csv
 from pathlib import Path

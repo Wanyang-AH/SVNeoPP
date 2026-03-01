@@ -25,7 +25,7 @@ rule annotsv2pep:
     conda:
         "workflow/envs/annotsv2pep.yaml"
     script:
-        "scripts/annotsv2pep.py"
+        "../../scripts/annotsv2pep.py"
 
 
 rule annotsv2pep_all:
