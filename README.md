@@ -12,11 +12,11 @@ The current implemented chain includes:
 * HLA typing integration (e.g. OptiType outputs as allele input)
 * Antigen processing prescreen (NetChop rules are included in the workflow targets)
 * netMHCpan input preparation → binding prediction → parse → filter
+* MHCflurry input preparation → prediction → parse → filter
+* DeepImmuno input preparation → prediction → parse → filter
 
 Planned / TODO (not yet fully integrated):
 
-* `MHCflurry` (binding/presentation prediction)
-* `DeepImmuno` (immunogenicity analysis)
 * `FragPipe` (mass-spectrometry database search)
 
 > Note: This repository expects some **large resources / licensed tools** (e.g. netMHCpan) to be provided locally and configured via `config/config.yaml`.
@@ -25,7 +25,7 @@ Planned / TODO (not yet fully integrated):
 
 ## Quickstart (recommended: run the included L041 module test)
 
-This is the fastest way to verify your environment and the netMHCpan-related module, without setting up full raw data paths.
+This is the fastest way to verify your environment and the netMHCpan / MHCflurry / DeepImmuno modules, without setting up full raw data paths.
 
 ### 0) Install Snakemake
 
@@ -57,7 +57,7 @@ This repository provides an intermediate peptide file for fast testing, and expe
 * `results/annotsv2pep/l041/l041_AnnotSV.peptides.csv`
 * `results/hla/optitype/l041/l041_tumor_rna_1_result.tsv`
 
-### 3) Configure netMHCpan paths in `config/config.yaml`
+### 3) Configure netMHCpan / MHCflurry / DeepImmuno resources in `config/config.yaml`
 
 Make sure you have netMHCpan installed locally (license-restricted; do not commit it). The workflow expects something like:
 
@@ -72,6 +72,10 @@ And in `config/config.yaml`:
 
 * `references.netmhcpan_home`: `resources/netMHCpan-4.1/Linux_x86_64`
 * `references.netmhcpan_bin`: `resources/netMHCpan-4.1/Linux_x86_64/bin/netMHCpan`
+* `references.mhcflurry_model_tarball`: `resources/mhcflurry/models_class1_presentation.20200611.tar.bz2`
+* `params.mhcflurry.docker_image`: Docker image ID containing MHCflurry CLI
+* `references.deepimmuno_home`: `resources/DeepImmuno`
+* `params.deepimmuno.python`: Python executable used to run DeepImmuno scripts (default: `python`)
 
 Internally, the workflow uses a command pattern like:
 
@@ -97,6 +101,18 @@ snakemake -n netmhcpan_filter_l041 --configfile config/config.yaml \
     netmhcpan_filter_l041
 ```
 
+Option C (strict module-only dry-run; MHCflurry on L041):
+
+```bash
+snakemake -n mhcflurry_filter_l041 --configfile config/config.yaml --rerun-triggers mtime
+```
+
+Option D (strict module-only dry-run; DeepImmuno on L041):
+
+```bash
+snakemake -n deepimmuno_filter_l041 --configfile config/config.yaml --rerun-triggers mtime
+```
+
 ### 5) Real run (single-sample module test)
 
 ```bash
@@ -105,6 +121,18 @@ snakemake -j 1 netmhcpan_filter_l041 --configfile config/config.yaml \
     netchop_prepare_input netchop_run netchop_parse netchop_filter \
     netmhcpan_prepare_input netmhcpan_run netmhcpan_parse netmhcpan_filter \
     netmhcpan_filter_l041
+```
+
+MHCflurry single-sample module run:
+
+```bash
+snakemake -j 1 mhcflurry_filter_l041 --configfile config/config.yaml --rerun-triggers mtime
+```
+
+DeepImmuno single-sample module run:
+
+```bash
+snakemake -j 1 deepimmuno_filter_l041 --configfile config/config.yaml --rerun-triggers mtime
 ```
 
 ---
@@ -141,6 +169,8 @@ Key points:
 
 * `references` paths must match real local software/resource locations.
 * netMHCpan settings are under `params.netmhc`.
+* MHCflurry settings are under `params.mhcflurry`.
+* DeepImmuno settings are under `params.deepimmuno`.
 
 ### 3) Dry-run the full workflow
 
@@ -166,33 +196,15 @@ Recommended Snakemake flags you may consider (optional, depending on your enviro
 
 ---
 
-## Expected outputs (netMHCpan module, L041)
+## Expected outputs (module tests, L041)
 
-For the L041 module test, expected outputs include:
+The module tests produce filtered result tables under `results/<module>/l041/`, for example:
 
-* `results/netmhcpan/l041/l041.input.pep`
-  Peptide sequences used as input to netMHCpan.
-* `results/netmhcpan/l041/l041.input.map.csv`
-  Mapping table from peptide → source records (e.g., originating SV annotation / identifiers).
-* `results/netmhcpan/l041/l041.alleles.txt`
-  HLA alleles used for prediction (e.g., parsed from OptiType result).
-* `results/netmhcpan/l041/l041.raw.txt`
-  Raw text output from netMHCpan (stdout/combined output).
-* `results/netmhcpan/l041/l041.xls`
-  netMHCpan `.xls` output file.
-* `results/netmhcpan/l041/l041.all.csv`
-  Parsed/merged results in CSV form.
 * `results/netmhcpan/l041/l041.filtered.csv`
-  Filtered/prioritized results (workflow-defined thresholds).
+* `results/mhcflurry/l041/l041.filtered.csv`
+* `results/deepimmuno/l041/l041.filtered.csv`
 
-Logs (one per step):
-
-* `logs/netmhcpan/l041.prepare.log`
-* `logs/netmhcpan/l041.run.log`
-* `logs/netmhcpan/l041.parse.log`
-* `logs/netmhcpan/l041.filter.log`
-
-> Tip: When debugging, always read the corresponding `logs/netmhcpan/...*.log` first.
+Step-level logs are written to `logs/<module>/l041.*.log`.
 
 ---
 
@@ -211,6 +223,17 @@ Key locations:
   * `scripts/netmhcpan/netmhcpan_prepare_input.py`
   * `scripts/netmhcpan/netmhcpan_parse.py`
   * `scripts/netmhcpan/netmhcpan_filter.py`
+* MHCflurry-related scripts:
+
+  * `scripts/mhcflurry/prepare_input.py`
+  * `scripts/mhcflurry/parse.py`
+  * `scripts/mhcflurry/filter.py`
+* DeepImmuno-related scripts:
+
+  * `scripts/deepimmuno/prepare_input.py`
+  * `scripts/deepimmuno/run.py`
+  * `scripts/deepimmuno/parse.py`
+  * `scripts/deepimmuno/filter.py`
 * `config/config.yaml`
   Main configuration.
 * `config/samples.tsv`
@@ -240,6 +263,22 @@ resources/netMHCpan-4.1/
     data/
 ```
 
+### MHCflurry
+
+Required configuration (example):
+
+* `references.mhcflurry_model_tarball`: `resources/mhcflurry/models_class1_presentation.20200611.tar.bz2`
+* `params.mhcflurry.docker_image`: Docker image ID containing MHCflurry CLI
+* GitHub: `https://github.com/openvax/mhcflurry`
+
+### DeepImmuno
+
+Required configuration (example):
+
+* `references.deepimmuno_home`: `resources/DeepImmuno`
+* `params.deepimmuno.python`: `python`
+* GitHub: `https://github.com/frankligy/DeepImmuno`
+
 ---
 
 ## Reproducibility & visualization (optional but recommended)
@@ -259,29 +298,10 @@ snakemake --report snakemake_report.html --configfile config/config.yaml
 
 ---
 
-## Troubleshooting (common issues)
-
-* **`snakemake -n` fails immediately**
-
-  * Check `config/config.yaml` paths, especially `references.*` (must exist locally).
-* **netMHCpan cannot run / cannot find data**
-
-  * Verify `references.netmhcpan_home` points to the directory containing `data/`, and `references.netmhcpan_bin` is executable.
-* **Full workflow fails but module test works**
-
-  * Most commonly due to incorrect `config/samples.tsv` file paths (`r1`/`r2`).
-* **Permission issues on `bin/netMHCpan`**
-
-  * Ensure it is executable (`chmod +x .../bin/netMHCpan`).
-
----
-
 ## Roadmap
 
 Planned modules (not yet integrated):
 
-* `MHCflurry` for additional binding/presentation scoring
-* `DeepImmuno` for immunogenicity scoring
 * `FragPipe` for mass-spectrometry database search integration
 
 ---
@@ -299,5 +319,3 @@ Also note that some third-party tools/resources (e.g., netMHCpan) are license-re
 * Before committing, review `.gitignore` and update ignore rules according to your project data/output policy.
 
 ---
-
-

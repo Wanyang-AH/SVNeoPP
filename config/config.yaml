@@ -20,6 +20,8 @@ references:
   netchop_bin: resources/netchop_3_1/bin/netChop
   netmhcpan_home: resources/netMHCpan-4.1/Linux_x86_64
   netmhcpan_bin: resources/netMHCpan-4.1/Linux_x86_64/bin/netMHCpan
+  mhcflurry_model_tarball: resources/mhcflurry/models_class1_presentation.20200611.tar.bz2
+  deepimmuno_home: resources/DeepImmuno
 
 
 pairing:
@@ -79,9 +81,15 @@ params:
     tmp_template: /tmp/netMHCpanXXXXXX
     extra: ""
   mhcflurry:
+    docker_image: d365f27d62d2
+    model_name: models_class1_presentation
+    model_install_dir: ~/.local/share/mhcflurry
+    model_check_subdir: 4/2.2.0/models_class1_presentation
     rank_threshold: 2.0
     extra: ""
   deepimmuno:
+    python: python
+    supported_lengths: [9, 10]
     threshold: 0.0
     extra: ""
   fragpipe:

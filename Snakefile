@@ -20,6 +20,8 @@ include: "workflow/rules/annotsv.smk"
 include: "workflow/rules/annotsv2pep.smk"
 include: "workflow/rules/netchop.smk"
 include: "workflow/rules/netmhcpan.smk"
+include: "workflow/rules/mhcflurry.smk"
+include: "workflow/rules/deepimmuno.smk"
 
 
 rule all:
@@ -33,3 +35,5 @@ rule all:
            rules.annotsv2pep_all.input,
            rules.netchop_filter_all.input,
            rules.netmhcpan_all.input,
+           rules.mhcflurry_all.input,
+           rules.deepimmuno_all.input,

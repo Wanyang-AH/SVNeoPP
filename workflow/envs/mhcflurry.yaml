@@ -1,7 +1,0 @@
-name: mhcflurry-env
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
-dependencies:
-  - mhcflurry=2.0.4
