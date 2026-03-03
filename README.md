@@ -22,7 +22,7 @@ The current implemented chain includes:
 
 ## Quickstart (recommended: run the included L041 module test)
 
-This is the fastest way to verify your environment and the netMHCpan / MHCflurry / DeepImmuno modules, without setting up full raw data paths.
+This is the fastest way to verify your environment and the netMHCpan / MHCflurry / DeepImmuno / FragPipe modules, without setting up full raw data paths.
 
 ### 0) Install Snakemake
 
@@ -53,6 +53,7 @@ This repository provides an intermediate peptide file for fast testing, and expe
 
 * `results/annotsv2pep/l041/l041_AnnotSV.peptides.csv`
 * `results/hla/optitype/l041/l041_tumor_rna_1_result.tsv`
+* `results/netchop/l041/l041.input.fasta` (needed for FragPipe quick test)
 
 ### 3) Configure netMHCpan / MHCflurry / DeepImmuno / FragPipe resources in `config/config.yaml`
 
@@ -183,6 +184,7 @@ Key points:
 * netMHCpan settings are under `params.netmhc`.
 * MHCflurry settings are under `params.mhcflurry`.
 * DeepImmuno settings are under `params.deepimmuno`.
+* FragPipe settings are under `params.fragpipe` and `references.fragpipe_*`.
 
 ### 3) Dry-run the full workflow
 
@@ -215,6 +217,7 @@ The module tests produce filtered result tables under `results/<module>/l041/`, 
 * `results/netmhcpan/l041/l041.filtered.csv`
 * `results/mhcflurry/l041/l041.filtered.csv`
 * `results/deepimmuno/l041/l041.filtered.csv`
+* `results/fragpipe/l041/run/.done.stamp`
 
 Step-level logs are written to `logs/<module>/l041.*.log`.
 
@@ -246,6 +249,12 @@ Key locations:
   * `scripts/deepimmuno/run.py`
   * `scripts/deepimmuno/parse.py`
   * `scripts/deepimmuno/filter.py`
+* FragPipe-related files:
+
+  * `workflow/rules/fragpipe.smk`
+  * `scripts/fragpipe/prepare_manifest.py`
+  * `scripts/fragpipe/prepare_custom_fasta.py`
+  * `scripts/fragpipe/prepare_workflow.py`
 * `config/config.yaml`
   Main configuration.
 * `config/samples.tsv`
@@ -324,13 +333,6 @@ snakemake --report snakemake_report.html --configfile config/config.yaml
 ```
 
 ---
-
-## Roadmap
-
-Core modules listed above are integrated; future updates focus on optimization and reporting.
-
----
-
 
 ## License
 
