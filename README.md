@@ -14,10 +14,7 @@ The current implemented chain includes:
 * netMHCpan input preparation → binding prediction → parse → filter
 * MHCflurry input preparation → prediction → parse → filter
 * DeepImmuno input preparation → prediction → parse → filter
-
-Planned / TODO (not yet fully integrated):
-
-* `FragPipe` (mass-spectrometry database search)
+* FragPipe integration (manifest/database/workflow preparation and headless run)
 
 > Note: This repository expects some **large resources / licensed tools** (e.g. netMHCpan) to be provided locally and configured via `config/config.yaml`.
 
@@ -57,7 +54,7 @@ This repository provides an intermediate peptide file for fast testing, and expe
 * `results/annotsv2pep/l041/l041_AnnotSV.peptides.csv`
 * `results/hla/optitype/l041/l041_tumor_rna_1_result.tsv`
 
-### 3) Configure netMHCpan / MHCflurry / DeepImmuno resources in `config/config.yaml`
+### 3) Configure netMHCpan / MHCflurry / DeepImmuno / FragPipe resources in `config/config.yaml`
 
 Make sure you have netMHCpan installed locally (license-restricted; do not commit it). The workflow expects something like:
 
@@ -76,6 +73,9 @@ And in `config/config.yaml`:
 * `params.mhcflurry.docker_image`: Docker image ID containing MHCflurry CLI
 * `references.deepimmuno_home`: `resources/DeepImmuno`
 * `params.deepimmuno.python`: Python executable used to run DeepImmuno scripts (default: `python`)
+* `references.fragpipe_workflow_dir`: `resources/fragpipe/workflows`
+* `references.fragpipe_reference_fasta`: `resources/fragpipe/db/reference/uniprot-reviewed-UP000005640.fas`
+* `params.fragpipe.docker_image`: Docker image used for FragPipe/Philosopher (must include `IonQuant-1.11.11`, `diaTracer-1.3.3`, `MSFragger-4.3`)
 
 Internally, the workflow uses a command pattern like:
 
@@ -113,6 +113,12 @@ Option D (strict module-only dry-run; DeepImmuno on L041):
 snakemake -n deepimmuno_filter_l041 --configfile config/config.yaml --rerun-triggers mtime
 ```
 
+Option E (strict module-only dry-run; FragPipe on L041):
+
+```bash
+snakemake -n fragpipe_l041 --configfile config/config.yaml --rerun-triggers mtime
+```
+
 ### 5) Real run (single-sample module test)
 
 ```bash
@@ -133,6 +139,12 @@ DeepImmuno single-sample module run:
 
 ```bash
 snakemake -j 1 deepimmuno_filter_l041 --configfile config/config.yaml --rerun-triggers mtime
+```
+
+FragPipe single-sample module run:
+
+```bash
+snakemake -j 1 fragpipe_l041 --configfile config/config.yaml --rerun-triggers mtime
 ```
 
 ---
@@ -279,6 +291,21 @@ Required configuration (example):
 * `params.deepimmuno.python`: `python`
 * GitHub: `https://github.com/frankligy/DeepImmuno`
 
+### FragPipe
+
+Required configuration (example):
+
+* `references.fragpipe_workflow_dir`: `resources/fragpipe/workflows`
+* `references.fragpipe_reference_fasta`: `resources/fragpipe/db/reference/uniprot-reviewed-UP000005640.fas`
+* `params.fragpipe.docker_image`: Docker image used to run FragPipe in this workflow
+* GitHub: `https://github.com/Nesvilab/FragPipe`
+
+Note:
+
+* For our institute setup, the FragPipe image needs extra integrated tools: `IonQuant-1.11.11`, `diaTracer-1.3.3`, `MSFragger-4.3`.
+* Workflow templates should be named as `{pair_id}.workflow` under `resources/fragpipe/workflows/`.
+* The runtime user must have Docker daemon access to execute FragPipe rules.
+
 ---
 
 ## Reproducibility & visualization (optional but recommended)
@@ -300,9 +327,7 @@ snakemake --report snakemake_report.html --configfile config/config.yaml
 
 ## Roadmap
 
-Planned modules (not yet integrated):
-
-* `FragPipe` for mass-spectrometry database search integration
+Core modules listed above are integrated; future updates focus on optimization and reporting.
 
 ---
 

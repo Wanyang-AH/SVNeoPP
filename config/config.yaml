@@ -22,6 +22,8 @@ references:
   netmhcpan_bin: resources/netMHCpan-4.1/Linux_x86_64/bin/netMHCpan
   mhcflurry_model_tarball: resources/mhcflurry/models_class1_presentation.20200611.tar.bz2
   deepimmuno_home: resources/DeepImmuno
+  fragpipe_workflow_dir: resources/fragpipe/workflows
+  fragpipe_reference_fasta: resources/fragpipe/db/reference/uniprot-reviewed-UP000005640.fas
 
 
 pairing:
@@ -93,6 +95,13 @@ params:
     threshold: 0.0
     extra: ""
   fragpipe:
+    docker_image: sibpt/fragpipe:anwy
+    philosopher_bin_in_container: /fragpipe_bin/fragpipe-23.1/fragpipe-23.1/tools/Philosopher/philosopher-v5.1.2
+    fragpipe_bin_in_container: /fragpipe_bin/fragpipe-23.1/fragpipe-23.1/bin/fragpipe
+    tools_folder_in_container: ""
+    ram_gb: 12
+    threads: 4
+    contam: true
     enzyme: unspecific
     fdr: 0.01
     extra: ""

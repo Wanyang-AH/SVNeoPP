@@ -22,6 +22,7 @@ include: "workflow/rules/netchop.smk"
 include: "workflow/rules/netmhcpan.smk"
 include: "workflow/rules/mhcflurry.smk"
 include: "workflow/rules/deepimmuno.smk"
+include: "workflow/rules/fragpipe.smk"
 
 
 rule all:
@@ -37,3 +38,4 @@ rule all:
            rules.netmhcpan_all.input,
            rules.mhcflurry_all.input,
            rules.deepimmuno_all.input,
+           rules.fragpipe_all.input,
